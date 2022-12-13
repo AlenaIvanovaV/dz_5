@@ -8,4 +8,6 @@ def set_browser_size_window():
 
 @pytest.fixture()
 def open_browser(set_browser_size_window):
+    browser.config.timeout = 50.0
     browser.config.base_url = 'https://demoqa.com'
+
