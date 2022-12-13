@@ -1,9 +1,11 @@
 import os
 from selene.support.shared import browser
 from selene import be, have
+from selene import command
 
 
 def test_fill_form(open_browser):
+    browser.open('/automation-practice-form')
     browser.element('[id="firstName"]').should(be.blank).type('Алена')
     browser.element('[id="lastName"]').should(be.blank).type('Иванова')
     browser.element('[id="userEmail"]').should(be.blank).type('angel@mail.com')
@@ -23,7 +25,7 @@ def test_fill_form(open_browser):
         os.path.abspath(os.path.join(os.path.dirname(__file__), '../files/picture.png')))
     browser.element('[id="currentAddress"]').should(be.blank).type('г.Москва ул Ленина 3')
     browser.element('[id="subjectsInput"]').type("Maths").press_enter()
-    browser.element('[type="submit"]').click()
+    browser.element('#submit').perform(command.js.click)
     browser.element('.table').should(have.text(
         'Алена Иванова' and
         'angel@mail.com' and
